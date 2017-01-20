@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8R6-ce-avD">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="04m-z3-RBJ">
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="04m-z3-RBJ" secondAttribute="height" multiplier="4:3" id="r5B-Hy-owQ"/>
+                                </constraints>
+                                <state key="normal" title="Start"/>
+                                <connections>
+                                    <action selector="mainButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5tb-yd-P1R"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SWT-Ra-Xr5">
+                                <state key="normal" title="Clear"/>
+                                <connections>
+                                    <action selector="clearButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZRR-Ce-9yD"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="8R6-ce-avD" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="72N-w5-C8U"/>
+                            <constraint firstItem="SWT-Ra-Xr5" firstAttribute="centerY" secondItem="04m-z3-RBJ" secondAttribute="centerY" id="CNI-fe-Esu"/>
+                            <constraint firstItem="SWT-Ra-Xr5" firstAttribute="width" secondItem="04m-z3-RBJ" secondAttribute="width" id="Dk4-QD-oaC"/>
+                            <constraint firstItem="SWT-Ra-Xr5" firstAttribute="height" secondItem="04m-z3-RBJ" secondAttribute="height" id="WkR-OO-H0f"/>
+                            <constraint firstItem="8R6-ce-avD" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.5" id="Xvh-Wa-fxY"/>
+                            <constraint firstItem="SWT-Ra-Xr5" firstAttribute="trailing" secondItem="8R6-ce-avD" secondAttribute="trailing" id="cXN-sU-slh"/>
+                            <constraint firstItem="04m-z3-RBJ" firstAttribute="leading" secondItem="8R6-ce-avD" secondAttribute="leading" id="fvZ-JW-DLF"/>
+                            <constraint firstItem="SWT-Ra-Xr5" firstAttribute="leading" secondItem="04m-z3-RBJ" secondAttribute="trailing" constant="10" id="lsz-c2-Z92"/>
+                            <constraint firstItem="8R6-ce-avD" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.5" id="mP5-Jf-oVF"/>
+                            <constraint firstItem="8R6-ce-avD" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="oJI-Zb-sX5"/>
+                            <constraint firstItem="04m-z3-RBJ" firstAttribute="top" secondItem="8R6-ce-avD" secondAttribute="bottom" constant="15" id="yQq-y8-hWX"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="mainButton" destination="04m-z3-RBJ" id="5Je-vn-Avc"/>
+                        <outlet property="mainView" destination="8R6-ce-avD" id="THh-4V-Nit"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+</document>
