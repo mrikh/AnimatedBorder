@@ -10,6 +10,8 @@
 
 @interface UIView (Border)
 
+@property (strong, nonatomic) IBInspectable UIColor *borderColor;
+
 -(void)createBorder;
 
 -(void)startDrawingBorder;

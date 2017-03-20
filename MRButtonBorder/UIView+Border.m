@@ -10,32 +10,16 @@
 
 @implementation UIView (Border)
 
+@dynamic borderColor;
+
 -(void)createBorder{
     
-    UIBezierPath *path = [UIBezierPath bezierPathWithRect:self.bounds];
-    
-    CAShapeLayer *borderLayer = [CAShapeLayer new];
-    
-    borderLayer.path = path.CGPath;
-
-    borderLayer.strokeColor = [UIColor colorWithRed:173.0f/255.0f green:143.0f/255.0f blue:86.0f/255.0f alpha:1.0f].CGColor;
-    
-    borderLayer.fillColor = [UIColor clearColor].CGColor;
-    
-    borderLayer.lineWidth = 2.0f;
-    
-    //so that we don't draw it right away
-    borderLayer.strokeEnd = 0.0f;
-    
-    [borderLayer setValue:@1005 forKey:@"animationTag"];
-    
-    [self.layer addSublayer:borderLayer];
+    // dont create again if it already exists
+    [self.layer addSublayer:[self setupBorderLayer]];
 }
 
 -(void)startDrawingBorder{
-    
-    //get our shapeLayer reference
-    
+   
     [self startAnimatingWithFrom:@0 andToValue:@1 andShouldClear:NO];
 }
 
@@ -50,18 +34,7 @@
     
     //get our shapeLayer reference
     
-    CAShapeLayer *borderLayer;
-    
-    for (CAShapeLayer *shapeLayer in self.layer.sublayers){
-        
-        if ([[shapeLayer valueForKey:@"animationTag"] floatValue] == 1005){
-            
-            borderLayer = shapeLayer;
-            
-            break;
-        }
-    }
-    
+    CAShapeLayer *borderLayer = [self searchForLayer];
     
     //we want to animate stroke end
     CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
@@ -97,5 +70,68 @@
     [borderLayer addAnimation:animation forKey:@"strokeEnd"];
 }
 
+-(CAShapeLayer *)setupBorderLayer{
+    
+    CAShapeLayer *tempLayer = [self searchForLayer];
+    
+    if(tempLayer){
+        
+        //adjust bounds everytime you call setup
+
+        tempLayer.path = [UIBezierPath bezierPathWithRoundedRect:self.bounds cornerRadius:self.layer.cornerRadius].CGPath;
+        
+        return tempLayer;
+    }
+    
+    UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:self.bounds cornerRadius:self.layer.cornerRadius];
+    
+    CAShapeLayer *borderLayer = [CAShapeLayer new];
+    
+    borderLayer.path = path.CGPath;
+    
+    borderLayer.fillColor = self.backgroundColor.CGColor;
+    
+    borderLayer.lineWidth = 2.0f;
+    
+    //so that we don't draw it right away
+    borderLayer.strokeEnd = 0.0f;
+    
+    [borderLayer setValue:@1005 forKey:@"animationTag"];
+    
+    return borderLayer;
+}
+
+-(CAShapeLayer *)searchForLayer{
+    
+    CAShapeLayer *borderLayer;
+    
+    for (CAShapeLayer *shapeLayer in self.layer.sublayers){
+        
+        if ([[shapeLayer valueForKey:@"animationTag"] floatValue] == 1005){
+            
+            borderLayer = shapeLayer;
+            
+            break;
+        }
+    }
+    
+    return borderLayer;
+}
+
+#pragma mark Setter
+
+-(void)setBorderColor:(UIColor *)borderColor{
+    
+    CAShapeLayer *layer = [self searchForLayer];
+    
+    if (!layer){
+        
+        layer = [self setupBorderLayer];
+    
+        [self.layer addSublayer:layer];
+    }
+    
+    layer.strokeColor = borderColor.CGColor;
+}
 
 @end

@@ -20,6 +20,7 @@
 @implementation ViewController
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
 }
@@ -30,6 +31,13 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:animated];
+        
+    mainView.layer.cornerRadius = mainView.bounds.size.width/2.0f;
+}
+
 -(void)viewDidAppear:(BOOL)animated{
     
     [super viewDidAppear:animated];
@@ -37,6 +45,8 @@
     [mainView createBorder];
     
     [mainButton createBorder];
+    
+    mainButton.borderColor = [UIColor redColor];
 }
 
 
