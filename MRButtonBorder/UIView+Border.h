@@ -12,6 +12,9 @@
 
 @property (strong, nonatomic) IBInspectable UIColor *borderColor;
 
+@property (assign, nonatomic) IBInspectable CGFloat borderWidth;
+
+
 -(void)createBorder;
 
 -(void)startDrawingBorder;

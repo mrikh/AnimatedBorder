@@ -10,7 +10,7 @@
 
 @implementation UIView (Border)
 
-@dynamic borderColor;
+@dynamic borderColor, borderWidth;
 
 -(void)createBorder{
     
@@ -77,7 +77,6 @@
     if(tempLayer){
         
         //adjust bounds everytime you call setup
-
         tempLayer.path = [UIBezierPath bezierPathWithRoundedRect:self.bounds cornerRadius:self.layer.cornerRadius].CGPath;
         
         return tempLayer;
@@ -90,8 +89,6 @@
     borderLayer.path = path.CGPath;
     
     borderLayer.fillColor = self.backgroundColor.CGColor;
-    
-    borderLayer.lineWidth = 2.0f;
     
     //so that we don't draw it right away
     borderLayer.strokeEnd = 0.0f;
@@ -118,20 +115,34 @@
     return borderLayer;
 }
 
-#pragma mark Setter
-
--(void)setBorderColor:(UIColor *)borderColor{
+-(CAShapeLayer *)createOrReturnLayer{
     
     CAShapeLayer *layer = [self searchForLayer];
     
     if (!layer){
         
         layer = [self setupBorderLayer];
-    
+        
         [self.layer addSublayer:layer];
     }
     
+    return layer;
+}
+
+#pragma mark Setter
+
+-(void)setBorderColor:(UIColor *)borderColor{
+    
+    CAShapeLayer *layer = [self createOrReturnLayer];
+    
     layer.strokeColor = borderColor.CGColor;
+}
+
+-(void)setBorderWidth:(CGFloat)borderWidth{
+    
+    CAShapeLayer *layer = [self createOrReturnLayer];
+    
+    layer.lineWidth = borderWidth;
 }
 
 @end
