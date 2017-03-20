@@ -5,7 +5,7 @@ This is a category on a `UIView`. Just directly drag and drop it into your proje
 
 In your `viewDidAppear` just call `[mainView createBorder];`. This will create a border but it will **not** draw it on the UI. This just creates the boder i.e sets its bounds and what not. 
 
-###### To animatedly show the border:`[mainButton startDrawingBorder];` 
+###### To animatedly show the border on button action or whatever:`[mainButton startDrawingBorder];` 
 ###### And to clear the border: `[mainButton clearBorder];`
 
 There are two properties that you can set, they are:
